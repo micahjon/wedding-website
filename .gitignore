@@ -1,0 +1,11 @@
+node_modules
+/build
+/*.log
+*.lock
+
+package-lock.json
+.now
+
+src/assets
+.DS_Store
+size-plugin.json

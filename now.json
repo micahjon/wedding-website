@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "env": {
+    "NODE_ENV": "production"
+  },
+  "alias": [
+    "engle-eshleman.wedding"
+  ]
+}
