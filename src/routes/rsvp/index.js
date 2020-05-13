@@ -16,6 +16,7 @@ class Rsvp extends Component {
     members: [],
     isAttendingBrunch: true,
     email: '',
+    notes: '',
   };
 
   // Cancel fetch if user exits this component before it resolves
@@ -74,6 +75,20 @@ class Rsvp extends Component {
     });
   }
 
+  handleSubmit(event) {
+    event.preventDefault();
+
+    const { selectedFamily, members, isAttendingBrunch, email, notes } = this.state;
+
+    console.log({
+      selectedFamily,
+      members,
+      isAttendingBrunch,
+      email,
+      notes,
+    });
+  }
+
   render() {
     const isLoading = !this.state.families.length;
     const minChars = 0;
@@ -96,7 +111,7 @@ class Rsvp extends Component {
             <h1>RSVP</h1>
             <p>Person A & Person B</p>
             <p style={{ height: '100px' }}> </p>
-            <form action="#" onSubmit={(event) => event.preventDefault()}>
+            <form action="#" onSubmit={this.handleSubmit.bind(this)}>
               <Select
                 placeholder={'Type your name'}
                 isLoading={isLoading}
@@ -172,7 +187,20 @@ class Rsvp extends Component {
                       </label>
                     </div>
                   )}
-                  <button>Submit RSVP</button>
+                  <div class="form__row">
+                    <label>
+                      <span>Anything else we should know?</span>
+                      <textarea
+                        type="text"
+                        onChange={(event) =>
+                          this.setState({ notes: event.target.value.trim() })
+                        }
+                      />
+                    </label>
+                  </div>
+                  <div class="form__row">
+                    <button>Submit RSVP</button>
+                  </div>
                 </div>
               ) : (
                 ''

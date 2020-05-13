@@ -9,6 +9,9 @@ const Member = ({ name, placeholder, isAttending }, updateMember) => {
   const updateAttendance = (isChecked) => {
     updateMember({ isAttending: isChecked });
   };
+  const updateDietaryRestrictions = (event) => {
+    updateMember({ dietaryRestrictions: event.target.value });
+  };
 
   const hasName = name.trim().length;
 
@@ -21,7 +24,7 @@ const Member = ({ name, placeholder, isAttending }, updateMember) => {
           value={name}
           placeholder={placeholder}
           onInput={updateName}
-        ></input>
+        />
       </label>
       <label class={hasName ? '' : style.disabled}>
         <span>Attending?</span>
@@ -29,7 +32,7 @@ const Member = ({ name, placeholder, isAttending }, updateMember) => {
       </label>
       <label class={hasName ? '' : style.disabled}>
         <span>Dietary Restrictions</span>
-        <textarea cols="30" rows="2"></textarea>
+        <textarea cols="30" rows="2" onInput={updateDietaryRestrictions} />
       </label>
     </div>
   );
