@@ -12,11 +12,14 @@ export default (req, res) => {
       view: 'Main View',
     })
     .eachPage(
-      function page(records, fetchNextPage) {
+      (records, fetchNextPage) => {
         families.push(
           ...records.map((record) => {
             const family = record.get('Family');
-            return getFamilyData(family);
+            return {
+              id: record.id,
+              ...getFamilyData(family),
+            };
           })
         );
 
@@ -25,9 +28,9 @@ export default (req, res) => {
         // If there are no more records, `done` will get called.
         fetchNextPage();
       },
-      function done(errorObject) {
+      (errorObject) => {
         if (errorObject) {
-          res.json({ ...errorObject, apiKey: process.env.AIRTABLE_API_KEY });
+          res.json({ ...errorObject });
           console.error(errorObject);
           return;
         }
@@ -61,7 +64,7 @@ function getFamilyData(family) {
     const lastName = lastNames.join(' ');
     people = people.map((p) => {
       if (p.includes(' ')) return p;
-      return p + ' ' + lastName;
+      return `${p} ${lastName}`;
     });
   }
 

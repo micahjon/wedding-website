@@ -10,13 +10,21 @@ import Switch from '../../components/switch';
 
 class Rsvp extends Component {
   state = {
+    // Selecting family
     input: '',
     families: [],
     selectedFamily: null,
+
+    // Form data
     members: [],
     isAttendingBrunch: true,
     email: '',
     notes: '',
+
+    // Submission
+    isSubmitting: false,
+    wasSubmitted: false,
+    submissionError: '',
   };
 
   // Cancel fetch if user exits this component before it resolves
@@ -80,13 +88,41 @@ class Rsvp extends Component {
 
     const { selectedFamily, members, isAttendingBrunch, email, notes } = this.state;
 
-    console.log({
-      selectedFamily,
-      members,
-      isAttendingBrunch,
+    const data = {
+      familyID: selectedFamily.id,
       email,
       notes,
+      isAttendingBrunch,
+      people: members,
+    };
+
+    this.setState({
+      isSubmitting: true,
+      wasSubmitted: false,
+      submissionError: '',
     });
+
+    fetch('/api/submit-rsvp', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+      signal: this.abortRequestController.signal,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log('/api/submit-rsvp ->', data);
+        this.setState({
+          isSubmitting: false,
+          wasSubmitted: Boolean(data.success),
+        });
+        if (data.error) {
+          alert(`Sorry, unable to submit RSVP\n${data.error}`);
+        }
+        // @todo -> show some sort of congratulatory message
+      });
   }
 
   render() {
@@ -199,7 +235,9 @@ class Rsvp extends Component {
                     </label>
                   </div>
                   <div class="form__row">
-                    <button>Submit RSVP</button>
+                    <button disabled={this.state.isSubmitting}>
+                      {this.state.isSubmitting ? 'Submitting...' : 'Submit RSVP'}
+                    </button>
                   </div>
                 </div>
               ) : (
