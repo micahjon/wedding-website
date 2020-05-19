@@ -121,10 +121,22 @@ class Rsvp extends Component {
           isSubmitting: false,
           wasSubmitted: Boolean(data.success),
         });
-        if (data.error) {
-          alert(`Sorry, unable to submit RSVP\n${data.error}`);
-        }
-        // @todo -> show some sort of congratulatory message
+        setTimeout(() => {
+          if (data.success) {
+            const someoneIsAttending =
+              this.state.selectedFamily &&
+              this.state.members.some(
+                ({ name, isAttending }) => name.trim() && isAttending
+              );
+            if (someoneIsAttending) {
+              alert(`Thanks, we'll see you in October!`);
+            } else {
+              alert(`Thanks, we'll miss you!`);
+            }
+          } else {
+            alert(`Sorry, unable to submit RSVP\n${data.error}`);
+          }
+        }, 100);
       });
   }
 
