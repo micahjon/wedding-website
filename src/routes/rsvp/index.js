@@ -1,8 +1,11 @@
 import { Component } from 'preact';
 import style from './style';
+import Markdown from 'preact-markdown';
 import { Select } from 'react-functional-select';
+import Header from '../../components/header';
 import Member from '../../components/member';
 import Switch from '../../components/switch';
+import eventContent from '../../content/event.md';
 
 // import {
 //   SelectContainer,
@@ -127,7 +130,7 @@ class Rsvp extends Component {
 
   render() {
     const isLoading = !this.state.families.length;
-    const minChars = 0;
+    const minChars = 3;
     const hasTypedEnough = this.state.input.length >= minChars;
     const canAddPlusOne =
       this.state.selectedFamily &&
@@ -142,55 +145,81 @@ class Rsvp extends Component {
       this.state.members.some(({ name, isAttending }) => name.trim() && isAttending);
     return (
       <div>
+        <Header />
         <div class={style.home}>
           <div class={style.centered}>
             <h1>RSVP</h1>
-            <p>Person A & Person B</p>
-            <p style={{ height: '100px' }}> </p>
+            <Markdown markdown={eventContent} />
+            <br />
+            <Select
+              placeholder={'Type your name'}
+              menuMaxHeight={35 * 5}
+              isLoading={isLoading}
+              style={{ background: 'green' }}
+              addClassNames={true}
+              options={hasTypedEnough ? this.state.families : []}
+              noOptionsMsg={
+                hasTypedEnough
+                  ? `No matches for "${this.state.input}"`
+                  : 'Please type at least 3 characters'
+              }
+              openMenuOnClick={minChars === 0}
+              isClearable={true}
+              getOptionValue={(option) => option.family}
+              getOptionLabel={(option) => option.family}
+              onKeyDown={({ target }) =>
+                setTimeout(() => {
+                  this.setState({ input: target.value.trim() });
+                }, 0)
+              }
+              onOptionChange={(selectedFamily) => {
+                if (selectedFamily === this.state.selectedFamily) return;
+                this.setState({
+                  selectedFamily,
+                  members: selectedFamily
+                    ? selectedFamily.members.map((name) => ({
+                        name,
+                        isAttending: true,
+                      }))
+                    : [],
+                });
+              }}
+            />
+            <br />
             <form action="#" onSubmit={this.handleSubmit.bind(this)}>
-              <Select
-                placeholder={'Type your name'}
-                isLoading={isLoading}
-                options={hasTypedEnough ? this.state.families : []}
-                noOptionsMsg={
-                  hasTypedEnough
-                    ? `No matches for "${this.state.input}"`
-                    : 'Please type at least 3 characters'
-                }
-                openMenuOnClick={minChars === 0}
-                isClearable={true}
-                getOptionValue={(option) => option.family}
-                getOptionLabel={(option) => option.family}
-                onKeyDown={({ target }) =>
-                  setTimeout(() => {
-                    this.setState({ input: target.value.trim() });
-                  }, 0)
-                }
-                onOptionChange={(selectedFamily) => {
-                  if (selectedFamily === this.state.selectedFamily) return;
-                  this.setState({
-                    selectedFamily,
-                    members: selectedFamily
-                      ? selectedFamily.members.map((name) => ({
-                          name,
-                          isAttending: true,
-                        }))
-                      : [],
-                  });
-                }}
-              />
               {this.state.selectedFamily ? (
                 <div class="form">
+                  <h2
+                    class="serif"
+                    style={{ margin: '2rem 1rem 1rem', textAlign: 'center' }}
+                  >
+                    You're Invited!
+                  </h2>
                   {this.state.members.map((member) =>
                     Member(member, this.setupUpdateMember(member))
                   )}
                   {canAddPlusOne && (
-                    <button onClick={this.addPlusOne.bind(this)}>Add Plus One</button>
+                    <div class="form__row" style={{ paddingTop: 0 }}>
+                      <button
+                        type="button"
+                        class="button button--small"
+                        onClick={this.addPlusOne.bind(this)}
+                      >
+                        Add Plus One
+                      </button>
+                    </div>
                   )}
                   {canAddExtraPeople && (
-                    <button onClick={this.addFamilyMember.bind(this)}>
-                      Add Person
-                    </button>
+                    <div class="form__row" style={{ paddingTop: 0 }}>
+                      {' '}
+                      <button
+                        type="button"
+                        class="button button--small"
+                        onClick={this.addFamilyMember.bind(this)}
+                      >
+                        Add Person
+                      </button>
+                    </div>
                   )}
                   {someoneIsAttending && (
                     <div class="form__row">
@@ -215,6 +244,7 @@ class Rsvp extends Component {
                         </span>
                         <input
                           type="email"
+                          style={{ width: '16rem' }}
                           onChange={(event) =>
                             this.setState({ email: event.target.value.trim() })
                           }
@@ -234,16 +264,18 @@ class Rsvp extends Component {
                       />
                     </label>
                   </div>
-                  <div class="form__row">
-                    <button disabled={this.state.isSubmitting}>
+                  <div class="form__row" style={{ paddingTop: 0 }}>
+                    <button class="button" disabled={this.state.isSubmitting}>
                       {this.state.isSubmitting ? 'Submitting...' : 'Submit RSVP'}
                     </button>
                   </div>
                 </div>
               ) : (
-                ''
+                <div style={{ height: '200px' }} />
               )}
             </form>
+            <br />
+            <p style="text-align: center">~</p>
           </div>
         </div>
       </div>

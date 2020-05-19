@@ -34,7 +34,7 @@ const Switch = ({ isChecked, onChange }) => (
         No
       </div>
     }
-    activeBoxShadow={'0 0 0 2px #4391eb'}
+    activeBoxShadow={'0 0 0 2px #3c5cd6'}
   />
 );
 

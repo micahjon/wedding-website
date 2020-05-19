@@ -1,10 +1,7 @@
-.home {
-	padding: 56px 20px;
-	min-height: 100%;
-	width: 100%;
-	background: white;
-}
 .centered {
 	margin: 0 auto;
 	max-width: 600px;
+	padding: 20px;
+	min-height: 100%;
+	width: 100%;
 }

@@ -16,7 +16,7 @@ const Member = ({ name, placeholder, isAttending }, updateMember) => {
   const hasName = name.trim().length;
 
   return (
-    <div class={`form__row ${style.member}`}>
+    <div class="form__row">
       <label>
         <span>Name</span>
         <input
@@ -30,7 +30,7 @@ const Member = ({ name, placeholder, isAttending }, updateMember) => {
         <span>Attending?</span>
         <Switch onChange={updateAttendance} isChecked={isAttending} />
       </label>
-      <label class={hasName ? '' : style.disabled}>
+      <label class={hasName && isAttending ? '' : style.disabled}>
         <span>Dietary Restrictions</span>
         <textarea cols="30" rows="2" onInput={updateDietaryRestrictions} />
       </label>

@@ -1,12 +1,10 @@
 import { h, Component } from 'preact';
 import { Router } from 'preact-router';
 
-import Header from './header';
-
 // Code-splitting is automated for routes
 import Home from '../routes/home';
 import Rsvp from '../routes/rsvp';
-import Profile from '../routes/profile';
+import Registry from '../routes/registry';
 
 export default class App extends Component {
   /** Gets fired when the route changes.
@@ -20,12 +18,14 @@ export default class App extends Component {
   render() {
     return (
       <div id="app">
-        <Header />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Parisienne&family=Gentium+Basic:wght@400&display=swap"
+          rel="stylesheet"
+        />
         <Router onChange={this.handleRoute}>
           <Home path="/" />
           <Rsvp path="/rsvp/" />
-          <Profile path="/profile/" user="me" />
-          <Profile path="/profile/:user" />
+          <Registry path="/registry/" />
         </Router>
       </div>
     );

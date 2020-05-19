@@ -1,6 +1,10 @@
 import { h } from 'preact';
+import Markdown from 'preact-markdown';
 import style from './style';
+import Header from '../../components/header';
 import ImageBox from '../../components/image-box';
+import eventContent from '../../content/event.md';
+import pageContent from '../../content/homepage.md';
 
 const Home = () => (
   <div>
@@ -9,13 +13,21 @@ const Home = () => (
       imageSizes={{ 1920: 'cover-1920w.jpg', 1024: 'cover-1024w.jpg' }}
       content={
         <div class={style.home}>
-          <div class={style.centered}>
-            <h1>We're getting married!</h1>
-            <p>Person A &amp; Person B</p>
-            <p style={{ height: '5rem' }}> </p>
-            <h2>Level 2 heading</h2>
-            <p style={{ height: '1000px' }}> </p>
-          </div>
+          <Header />
+          <main class={style.centered}>
+            <h1 class="serif">We're getting married!</h1>
+            <Markdown markdown={eventContent} />
+            <p style="text-align: center;">
+              <a class="button" href="/rsvp/" style={{ letterSpacing: '1px' }}>
+                RSVP
+              </a>
+            </p>
+            <br />
+            <Markdown markdown={pageContent} />
+            <br />
+            <br />
+            <p style="text-align: center">~</p>
+          </main>
         </div>
       }
     />

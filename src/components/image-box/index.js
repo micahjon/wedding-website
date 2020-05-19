@@ -1,25 +1,30 @@
 import { h } from 'preact';
+import dist from 'preact-ssr-prepass';
 // import style from './style.css';
 
 const ImageBox = ({ aspectRatio, imageSizes, alt = '', content }) => {
-  const figureStyle = {
-    position: 'fixed',
-    paddingBottom: `${100 / aspectRatio}%`,
-    margin: 0,
-    width: '100%',
-    background: '#ededed',
-  };
-  const placeholderStyle = {
+  const maxWidth = '1000px';
+  const containerStyle = {
     position: 'relative',
-    zIndex: 2,
-    paddingTop: `${100 / aspectRatio}%`,
+    width: '100%',
+    maxWidth,
   };
   const imageStyle = {
-    position: 'absolute',
+    position: 'fixed',
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
+    maxWidth,
+    margin: '0 auto',
+  };
+  const placeholderStyle = {
+    paddingTop: `${100 / aspectRatio}%`,
+    margin: 0,
+  };
+  const contentStyle = {
+    position: 'relative',
+    zIndex: 2,
   };
   const sortedSizes = Object.keys(imageSizes).sort();
   const srcSet = sortedSizes
@@ -28,10 +33,11 @@ const ImageBox = ({ aspectRatio, imageSizes, alt = '', content }) => {
   const largestImageUrl = `assets/${imageSizes[sortedSizes[sortedSizes.length - 1]]}`;
   return (
     <div>
-      <figure style={figureStyle}>
+      <div style={containerStyle}>
         <img src={largestImageUrl} alt={alt} srcSet={srcSet} style={imageStyle} />
-      </figure>
-      <div style={placeholderStyle}>{content}</div>
+        <div style={placeholderStyle} />
+      </div>
+      <div style={contentStyle}>{content}</div>
     </div>
   );
 };
