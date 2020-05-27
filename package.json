@@ -4,9 +4,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "preact build --template src/template.html --prerenderUrls ./prerender-urls.js",
+    "build": "preact build --template src/template.html",
     "serve": "sirv build --cors --single",
-    "dev": "preact watch --template src/template.html --prerenderUrls ./prerender-urls.js --port $PORT",
+    "dev": "preact watch --template src/template.html --port $PORT",
     "lint": "eslint src",
     "test": "jest"
   },

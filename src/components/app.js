@@ -13,6 +13,12 @@ export default class App extends Component {
    */
   handleRoute = (e) => {
     this.currentUrl = e.url;
+    const pageTitles = {
+      '': `Audrey & Micah's Wedding`,
+      rsvp: `RSVP | Audrey & Micah's Wedding`,
+      registry: `Registry | Audrey & Micah's Wedding`,
+    };
+    document.title = pageTitles[e.url.replace(/[^a-z]/g, '')] || pageTitles[''];
   };
 
   render() {
