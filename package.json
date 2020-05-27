@@ -1,12 +1,12 @@
 {
   "private": true,
-  "name": "site",
+  "name": "wedding-website",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "preact build --template src/template.html",
+    "build": "preact build --template src/template.html --prerenderUrls ./prerender-urls.js",
     "serve": "sirv build --cors --single",
-    "dev": "preact watch --template src/template.html",
+    "dev": "preact watch --template src/template.html --prerenderUrls ./prerender-urls.js --port $PORT",
     "lint": "eslint src",
     "test": "jest"
   },
