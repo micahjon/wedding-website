@@ -50,6 +50,13 @@ const Home = () => (
             </figure>
 
             <figure class="photo">
+              <img src="/assets/backpacking-840w.jpg" alt="" />
+              <figcaption>
+                <Markdown markdown={text.image_backpacking} />
+              </figcaption>
+            </figure>
+
+            <figure class="photo">
               <img src="/assets/sailfish-1120w.jpg" alt="" />
               <figcaption>
                 <Markdown markdown={text.image_sailfish} />
