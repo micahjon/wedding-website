@@ -240,7 +240,8 @@ class Rsvp extends Component {
                     <div class="form__row">
                       <label>
                         <span>
-                          Are you interested in coming to brunch on Sunday morning?
+                          We're hoping to spend more time with guests from out of town
+                          on Sunday morning at brunch. Do you plan on attending?
                         </span>
                         <Switch
                           onChange={(isChecked) =>
