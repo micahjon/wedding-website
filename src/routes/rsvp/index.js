@@ -273,6 +273,7 @@ class Rsvp extends Component {
                       <span>Anything else we should know?</span>
                       <textarea
                         type="text"
+                        style="width: 100%"
                         onChange={(event) =>
                           this.setState({ notes: event.target.value.trim() })
                         }
