@@ -14,13 +14,16 @@ export default (req, res) => {
     .eachPage(
       (records, fetchNextPage) => {
         families.push(
-          ...records.map((record) => {
-            const family = record.get('Family');
-            return {
-              id: record.id,
-              ...getFamilyData(family),
-            };
-          })
+          ...records
+            .map((record) => {
+              const family = record.get('Family');
+              if (!family) return;
+              return {
+                id: record.id,
+                ...getFamilyData(family),
+              };
+            })
+            .filter(Boolean)
         );
 
         // To fetch the next page of records, call `fetchNextPage`.
