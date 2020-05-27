@@ -20,6 +20,10 @@ h1 {
 	font-size: 60px;
 	line-height: 72px;
 	margin: 0;
+	@media (max-width: 360px) {
+		font-size: 56px;
+		line-height: 64px;
+	}
 }
 
 h2 {
@@ -34,7 +38,12 @@ h2 {
 
 a {
 	color: #333;
-	text-decoration: underline;
+	text-decoration: none;
+	border-bottom: 1px solid #e7e7e7;
+	transition: background-color 0.3s ease-in;
+	&:hover, &:focus {
+		background-color: #e7e7e7;
+	}
 }
 
 .button {
