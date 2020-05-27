@@ -8,3 +8,14 @@
 	margin: 0 auto;
 	max-width: 600px;
 }
+
+.photo {
+	margin-bottom: 1rem;
+}
+@media (min-width: 700px) {
+	.photo {
+		float: right;
+		width: 350px;
+		margin-left: 1rem;;
+	}
+}

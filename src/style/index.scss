@@ -108,3 +108,26 @@ a {
 .rfs-control-container {
 	background-color: white;
 }
+
+img {
+	height: auto;
+	max-width: 100%;
+}
+.photo {
+	margin: 0 auto 2rem;
+	img {
+		display: block;
+	}
+	figcaption {
+		background-color: #ededed;
+		padding: 0.75rem;
+	}
+	p {
+		margin: 0;
+	}
+}
+@media (min-width: 800px) {
+	.photo {
+		margin-bottom: 3rem;
+	}
+}

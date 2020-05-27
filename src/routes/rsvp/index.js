@@ -160,7 +160,10 @@ class Rsvp extends Component {
         <Header />
         <div class={style.home}>
           <div class={style.centered}>
-            <h1>RSVP</h1>
+            <h1 style="letter-spacing: 1px">RSVP!</h1>
+            <figure class={`photo ${style.photo}`}>
+              <img src="/assets/image3.jpg" alt="" />
+            </figure>
             <Markdown markdown={eventContent} />
             <br />
             <Select

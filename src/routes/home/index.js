@@ -5,6 +5,7 @@ import Header from '../../components/header';
 import ImageBox from '../../components/image-box';
 import eventContent from '../../content/event.md';
 import pageContent from '../../content/homepage.md';
+import text from '../../content/text';
 
 const Home = () => (
   <div>
@@ -25,6 +26,30 @@ const Home = () => (
             <br />
             <Markdown markdown={pageContent} />
             <br />
+
+            <h3>Photos</h3>
+            <figure class="photo">
+              <img src="/assets/image1.jpg" alt="" />
+              <figcaption>
+                <Markdown markdown={text.image1} />
+              </figcaption>
+            </figure>
+
+            <figure class="photo">
+              <img src="/assets/image5.jpg" alt="" />
+              <figcaption>
+                <Markdown markdown={text.image5} />
+              </figcaption>
+            </figure>
+
+            <figure class="photo">
+              <img src="/assets/image2.jpg" alt="" />
+              <figcaption>
+                <Markdown markdown={text.image2} />
+              </figcaption>
+            </figure>
+
+            <br />
             <br />
             <p style="text-align: center">~</p>
           </main>
@@ -35,3 +60,12 @@ const Home = () => (
 );
 
 export default Home;
+
+{
+  /* <figure class="photo">
+              <img src="/assets/image3.jpg" alt="" />
+              <figcaption>
+                <Markdown markdown={text.image3} />
+              </figcaption>
+            </figure> */
+}

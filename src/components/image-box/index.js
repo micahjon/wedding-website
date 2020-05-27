@@ -28,9 +28,9 @@ const ImageBox = ({ aspectRatio, imageSizes, alt = '', content }) => {
   };
   const sortedSizes = Object.keys(imageSizes).sort();
   const srcSet = sortedSizes
-    .map((width) => `assets/${imageSizes[width]} ${width}w`)
+    .map((width) => `/assets/${imageSizes[width]} ${width}w`)
     .join(',');
-  const largestImageUrl = `assets/${imageSizes[sortedSizes[sortedSizes.length - 1]]}`;
+  const largestImageUrl = `/assets/${imageSizes[sortedSizes[sortedSizes.length - 1]]}`;
   return (
     <div>
       <div style={containerStyle}>
