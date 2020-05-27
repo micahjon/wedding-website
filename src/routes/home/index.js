@@ -29,23 +29,30 @@ const Home = () => (
 
             <h3>Photos</h3>
             <figure class="photo">
-              <img src="/assets/image1.jpg" alt="" />
+              <img src="/assets/theater-1120w.jpg" alt="" />
               <figcaption>
-                <Markdown markdown={text.image1} />
+                <Markdown markdown={text.image_theater} />
               </figcaption>
             </figure>
 
             <figure class="photo">
-              <img src="/assets/image5.jpg" alt="" />
+              <img src="/assets/scarves-1120w.jpg" alt="" />
               <figcaption>
-                <Markdown markdown={text.image5} />
+                <Markdown markdown={text.image_scarves} />
               </figcaption>
             </figure>
 
             <figure class="photo">
-              <img src="/assets/image2.jpg" alt="" />
+              <img src="/assets/pringles-1120w.jpg" alt="" />
               <figcaption>
-                <Markdown markdown={text.image2} />
+                <Markdown markdown={text.image_pringles} />
+              </figcaption>
+            </figure>
+
+            <figure class="photo">
+              <img src="/assets/sailfish-1120w.jpg" alt="" />
+              <figcaption>
+                <Markdown markdown={text.image_sailfish} />
               </figcaption>
             </figure>
 

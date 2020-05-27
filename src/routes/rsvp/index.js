@@ -162,7 +162,7 @@ class Rsvp extends Component {
           <div class={style.centered}>
             <h1 style="letter-spacing: 1px">RSVP!</h1>
             <figure class={`photo ${style.photo}`}>
-              <img src="/assets/image3.jpg" alt="" />
+              <img src="/assets/besalu-700w.jpg" alt="" />
             </figure>
             <Markdown markdown={eventContent} />
             <br />
