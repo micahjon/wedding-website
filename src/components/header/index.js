@@ -11,10 +11,13 @@ const Header = ({ styles } = {}) => (
       </Link>
       <nav>
         <Link activeClassName={style.active} href="/">
-          The Wedding
+          Wedding
         </Link>
         <Link activeClassName={style.active} href="/rsvp">
           RSVP
+        </Link>
+        <Link activeClassName={style.active} href="/faqs">
+          FAQs
         </Link>
         <Link activeClassName={style.active} href="/registry">
           Registry

@@ -5,6 +5,7 @@ import { Router } from 'preact-router';
 import Home from '../routes/home';
 import Rsvp from '../routes/rsvp';
 import Registry from '../routes/registry';
+import FAQs from '../routes/faqs';
 
 export default class App extends Component {
   /** Gets fired when the route changes.
@@ -32,6 +33,7 @@ export default class App extends Component {
           <Home path="/" />
           <Rsvp path="/rsvp/" />
           <Registry path="/registry/" />
+          <FAQs path="/faqs/" />
         </Router>
       </div>
     );
