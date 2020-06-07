@@ -19,7 +19,9 @@ export default class App extends Component {
       rsvp: `RSVP | Audrey & Micah's Wedding`,
       registry: `Registry | Audrey & Micah's Wedding`,
     };
-    document.title = pageTitles[e.url.replace(/[^a-z]/g, '')] || pageTitles[''];
+    if (typeof window !== 'undefined') {
+      document.title = pageTitles[e.url.replace(/[^a-z]/g, '')] || pageTitles[''];
+    }
   };
 
   render() {
