@@ -2,9 +2,12 @@ import { Component } from 'preact';
 import style from './style';
 import Header from '../../components/header';
 import Gift from '../../components/gift';
+import text from '../../content/text';
 
 class Registry extends Component {
   state = {
+    isLoading: true,
+
     // Registry items
     items: [],
   };
@@ -14,7 +17,7 @@ class Registry extends Component {
 
   handleMarkAsPurchased(id) {
     const updatedItems = this.state.items.map((item) => {
-      if (item.id === id) item.claimedCount++;
+      if (item.id === id) item.claimDates.push(getDateString());
       return item;
     });
     this.setState({ items: updatedItems });
@@ -27,7 +30,7 @@ class Registry extends Component {
       },
       body: JSON.stringify({
         id,
-        claimedCount: updatedItems.find((item) => item.id === id).claimedCount,
+        claimDates: updatedItems.find((item) => item.id === id).claimDates,
       }),
     })
       .then((res) => res.json())
@@ -52,7 +55,7 @@ class Registry extends Component {
         }
 
         const { items } = data;
-        this.setState({ items });
+        this.setState({ items, isLoading: false });
       });
   }
 
@@ -63,10 +66,10 @@ class Registry extends Component {
 
   render() {
     const unclaimedItems = this.state.items.filter(
-      (item) => item.count > item.claimedCount
+      (item) => item.count > item.claimDates.length
     );
     const claimedItems = this.state.items.filter(
-      (item) => item.count <= item.claimedCount
+      (item) => item.count <= item.claimDates.length
     );
     const handleMarkAsPurchased = this.handleMarkAsPurchased.bind(this);
     return (
@@ -76,14 +79,13 @@ class Registry extends Component {
           <div class={style.centered}>
             <h1 style="letter-spacing: 1px">Registry</h1>
             <br />
-            <p>
-              We have everything we need and much more. Please don't feel obligated to
-              bring a gift!
-            </p>
+            <p>{text.registry_intro}</p>
             <br />
             <h2>Unclaimed Items</h2>
             <div style="display: flex; flex-wrap: wrap">
-              {unclaimedItems.length ? (
+              {this.state.isLoading ? (
+                <p style="margin: 1rem 0;">Loading...</p>
+              ) : unclaimedItems.length ? (
                 unclaimedItems.map((item) => Gift(item, handleMarkAsPurchased))
               ) : (
                 <p>No items</p>
@@ -93,12 +95,16 @@ class Registry extends Component {
             <br />
             <h2>Claimed Items</h2>
             <div style="display: flex; flex-wrap: wrap">
-              {claimedItems.length ? (
+              {this.state.isLoading ? (
+                <p style="margin: 1rem 0;">Loading...</p>
+              ) : claimedItems.length ? (
                 claimedItems.map((item) => Gift(item, handleMarkAsPurchased))
               ) : (
                 <p>No items</p>
               )}
             </div>
+            <br />
+            <p>{text.registry_contact}</p>
             <br />
             <p style="text-align: center">~</p>
           </div>
@@ -109,3 +115,13 @@ class Registry extends Component {
 }
 
 export default Registry;
+
+// https://stackoverflow.com/a/10632399/1546808
+function getDateString() {
+  const d = new Date();
+  return `${[d.getMonth() + 1, d.getDate(), d.getFullYear()].join('/')} ${[
+    d.getHours(),
+    d.getMinutes(),
+    d.getSeconds(),
+  ].join(':')}`;
+}

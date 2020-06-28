@@ -9,14 +9,14 @@ export default (req, res) => {
     return res.json({ error: 'POST body is not valid JSON' });
   }
 
-  const { id, claimedCount } = req.body;
+  const { id, claimDates } = req.body;
 
   base('Registry').update(
     [
       {
         id,
         fields: {
-          'Claimed Count': claimedCount,
+          'Claim Dates': claimDates.join(', '),
         },
       },
     ],

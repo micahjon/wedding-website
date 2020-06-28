@@ -18,7 +18,10 @@ export default (req, res) => {
               const link = record.get('Link');
               const photos = record.get('Photo');
               const count = record.get('Count');
-              const claimedCount = record.get('Claimed Count') || 0;
+              const claimDates = (record.get('Claim Dates') || '')
+                .split(/, ?/)
+                .map((date) => date.trim())
+                .filter(Boolean);
               if (!name) return;
               return {
                 id: record.id,
@@ -26,7 +29,7 @@ export default (req, res) => {
                 link,
                 photo: photos ? photos[0].thumbnails.large : undefined,
                 count,
-                claimedCount,
+                claimDates,
               };
             })
             .filter(Boolean)
