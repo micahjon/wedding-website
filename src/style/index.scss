@@ -65,12 +65,16 @@ a {
 	background-color: #3c5cd6;
 	border: none;
 	transition: box-shadow .15s ease-in-out 0s;
+	font: inherit;
 	&:focus {
 		outline: 0;
 		box-shadow: 0 0 0 2px #3c5cd6;
 	}
 	&--small {
 		font-size: 14px;
+	}
+	&:hover, &:active {
+		background-color: #4391eb;
 	}
 }
 

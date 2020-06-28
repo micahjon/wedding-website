@@ -15,18 +15,18 @@ export default (req, res) => {
           ...records
             .map((record) => {
               const name = record.get('Name');
-              const url = record.get('Link');
+              const link = record.get('Link');
               const photos = record.get('Photo');
-              const notes = record.get('Notes');
-              const reservedBy = record.get('Reserved By');
+              const count = record.get('Count');
+              const claimedCount = record.get('Claimed Count') || 0;
               if (!name) return;
               return {
                 id: record.id,
                 name,
-                url,
+                link,
                 photo: photos ? photos[0].thumbnails.large : undefined,
-                reservedBy,
-                notes,
+                count,
+                claimedCount,
               };
             })
             .filter(Boolean)

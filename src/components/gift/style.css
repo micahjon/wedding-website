@@ -1,0 +1,37 @@
+.item {
+	padding: 1rem;
+	width: 300px;
+	max-width: 100%;
+}
+.item p {
+	margin-bottom: 0.25rem;
+}
+.button {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 2rem;
+	line-height: 2rem;
+	padding: 0 .5rem;
+	margin: 0 0 .25rem;
+	color: #fff;
+	user-select: none;
+
+	transition: color .3s ease-in-out, opacity .3s ease-in-out, background .3s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.viewItemButton {
+	background: linear-gradient(90deg,#4391eb 0,#3165ce 50%,#3165ce);
+	background-size: 200%;
+}
+.viewItemButton:hover, .viewItemButton:active {
+	background-position-x: 99%;
+}
+
+.purchasedButton {
+	background: #3bb150;
+}
+.purchasedButton:hover, .purchasedButton:active {
+	background: #43c65a;
+}
