@@ -217,7 +217,7 @@ class Rsvp extends Component {
                     <div class="form__row" style={{ paddingTop: 0 }}>
                       <button
                         type="button"
-                        class="button button--small"
+                        class="button button--blue button--small"
                         onClick={this.addPlusOne.bind(this)}
                       >
                         Add Plus One
@@ -229,7 +229,7 @@ class Rsvp extends Component {
                       {' '}
                       <button
                         type="button"
-                        class="button button--small"
+                        class="button button--blue button--small"
                         onClick={this.addFamilyMember.bind(this)}
                       >
                         Add Person
@@ -282,7 +282,10 @@ class Rsvp extends Component {
                     </label>
                   </div>
                   <div class="form__row" style={{ paddingTop: 0 }}>
-                    <button class="button" disabled={this.state.isSubmitting}>
+                    <button
+                      class="button button--blue"
+                      disabled={this.state.isSubmitting}
+                    >
                       {this.state.isSubmitting ? 'Submitting...' : 'Submit RSVP'}
                     </button>
                   </div>

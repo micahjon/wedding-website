@@ -19,7 +19,11 @@ const Home = () => (
             <h1 class="serif">We're getting married!</h1>
             <Markdown markdown={eventContent} />
             <p style="text-align: center;">
-              <a class="button" href="/rsvp/" style={{ letterSpacing: '1px' }}>
+              <a
+                class="button button--blue"
+                href="/rsvp/"
+                style={{ letterSpacing: '1px' }}
+              >
                 RSVP
               </a>
             </p>
