@@ -6,7 +6,7 @@
 .item p {
 	margin-bottom: 0.25rem;
 }
-.button {
+/* .button {
 	width: 100%;
 	display: flex;
 	justify-content: center;
@@ -19,7 +19,7 @@
 	user-select: none;
 
 	transition: color .3s ease-in-out, opacity .3s ease-in-out, background .3s ease-in-out, box-shadow .15s ease-in-out;
-}
+} */
 
 .viewItemButton {
 	background: linear-gradient(90deg,#4391eb 0,#3165ce 50%,#3165ce);

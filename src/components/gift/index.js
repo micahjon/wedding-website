@@ -13,7 +13,7 @@ const Item = ({ id, name, link, photo, count, claimDates }, markAsPurchased) => 
       <p>{`${claimedCount} of ${count} claimed`}</p>
       {isAvailable ? (
         <button
-          class={`button ${style.button} ${style.purchasedButton}`}
+          class={`button button--block ${style.purchasedButton}`}
           onClick={onMarkAsPurchased}
         >
           Mark as Purchased
@@ -22,7 +22,7 @@ const Item = ({ id, name, link, photo, count, claimDates }, markAsPurchased) => 
         ''
       )}
       <a
-        class={`button ${style.button} ${style.viewItemButton}`}
+        class={`button button--block ${style.viewItemButton}`}
         href={link}
         target="_blank"
         rel="noopener noreferrer"
