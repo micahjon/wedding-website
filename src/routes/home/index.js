@@ -4,7 +4,6 @@ import style from './style';
 import Header from '../../components/header';
 import ImageBox from '../../components/image-box';
 import eventContent from '../../content/event.md';
-import pageContent from '../../content/homepage.md';
 import text from '../../content/text';
 
 const Home = () => (
@@ -18,6 +17,10 @@ const Home = () => (
           <main class={style.centered}>
             <h1 class="serif">We're getting married!</h1>
             <Markdown markdown={eventContent} />
+            <br />
+            <p style="text-align: center; font-style: italic; margin-bottom: 0.5rem">
+              Please RSVP for Plan A by September 10th
+            </p>
             <p style="text-align: center;">
               <a
                 class="button button--blue"
@@ -28,7 +31,6 @@ const Home = () => (
               </a>
             </p>
             <br />
-            <Markdown markdown={pageContent} />
             <br />
 
             <h3>Photos</h3>
