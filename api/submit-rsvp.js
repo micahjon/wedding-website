@@ -9,7 +9,7 @@ export default (req, res) => {
     return res.json({ error: 'POST body is not valid JSON' });
   }
 
-  const { familyID, email, notes, isAttendingBrunch, people = [] } = req.body;
+  const { familyID, email, notes, people = [] } = req.body;
 
   const newEntries = people.map(({ name, isAttending, dietaryRestrictions }) => {
     return {
@@ -19,7 +19,6 @@ export default (req, res) => {
         'Dietary Restrictions': dietaryRestrictions,
         Email: email,
         Notes: notes,
-        Brunch: isAttending && isAttendingBrunch,
         Family: [familyID],
       },
     };

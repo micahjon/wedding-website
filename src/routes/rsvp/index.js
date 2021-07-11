@@ -5,7 +5,7 @@ import { Select } from 'react-functional-select';
 import Header from '../../components/header';
 import Member from '../../components/member';
 import Switch from '../../components/switch';
-import eventContent from '../../content/event.md';
+import eventContent from '../../content/rsvp.md';
 
 // import {
 //   SelectContainer,
@@ -20,7 +20,6 @@ class Rsvp extends Component {
 
     // Form data
     members: [],
-    isAttendingBrunch: true,
     email: '',
     notes: '',
 
@@ -89,13 +88,12 @@ class Rsvp extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    const { selectedFamily, members, isAttendingBrunch, email, notes } = this.state;
+    const { selectedFamily, members, email, notes } = this.state;
 
     const data = {
       familyID: selectedFamily.id,
       email,
       notes,
-      isAttendingBrunch,
       people: members,
     };
 
@@ -160,12 +158,11 @@ class Rsvp extends Component {
         <Header />
         <div class={style.home}>
           <div class={style.centered}>
-            <h1 style="letter-spacing: 1px">RSVP!</h1>
+            <h1 style="letter-spacing: 1px">RSVP</h1>
             <figure class={`photo ${style.photo}`}>
-              <img src="/assets/besalu-700w.jpg" alt="" />
+              <img src="/assets/oaks-park-700w.jpg" alt="" />
             </figure>
             <Markdown markdown={eventContent} />
-            <br />
             <Select
               placeholder={'Type your name'}
               menuMaxHeight={35 * 5}
@@ -240,23 +237,7 @@ class Rsvp extends Component {
                     <div class="form__row">
                       <label>
                         <span>
-                          We're hoping to spend more time with guests from out of town
-                          on Sunday morning at brunch. Do you plan on attending?
-                        </span>
-                        <Switch
-                          onChange={(isChecked) =>
-                            this.setState({ isAttendingBrunch: isChecked })
-                          }
-                          isChecked={this.state.isAttendingBrunch}
-                        />
-                      </label>
-                    </div>
-                  )}
-                  {someoneIsAttending && (
-                    <div class="form__row">
-                      <label>
-                        <span>
-                          If plans change due to Covid, what email can we reach you at?
+                          If plans change, what email can we reach you at?
                         </span>
                         <input
                           type="email"

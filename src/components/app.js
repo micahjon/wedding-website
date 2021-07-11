@@ -3,6 +3,7 @@ import { Router } from 'preact-router';
 
 // Code-splitting is automated for routes
 import Home from '../routes/home';
+import Wedding from '../routes/wedding';
 import Rsvp from '../routes/rsvp';
 import Registry from '../routes/registry';
 import FAQs from '../routes/faqs';
@@ -33,6 +34,7 @@ export default class App extends Component {
         />
         <Router onChange={this.handleRoute}>
           <Home path="/" />
+          <Wedding path="/wedding/" />
           <Rsvp path="/rsvp/" />
           <Registry path="/registry/" />
           <FAQs path="/faqs/" />

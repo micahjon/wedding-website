@@ -80,6 +80,13 @@ class Registry extends Component {
             <h1 style="letter-spacing: 1px">Registry</h1>
             <br />
             <p>{text.registry_intro}</p>
+            <p>
+              Feel free drop off or to mail gifts to:
+              <br />
+              {text.address_line_1}
+              <br />
+              {text.address_line_2}
+            </p>
             <br />
             <h2>Unclaimed Items</h2>
             <div style="display: flex; flex-wrap: wrap">

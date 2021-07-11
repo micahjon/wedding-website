@@ -41,7 +41,8 @@
 	flex-grow: 1;
 	justify-content: space-between;
 	justify-content: space-around;
-	max-width: 320px;
+	/* For fewer nav items */
+	max-width: 200px;
 }
 
 .header a {
