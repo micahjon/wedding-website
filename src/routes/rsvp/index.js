@@ -159,10 +159,12 @@ class Rsvp extends Component {
         <div class={style.home}>
           <div class={style.centered}>
             <h1 style="letter-spacing: 1px">RSVP</h1>
-            <figure class={`photo ${style.photo}`}>
-              <img src="/assets/oaks-park-700w.jpg" alt="" />
+            <p>We look forward celebrating with you all in person!</p>
+            <figure class={`photo`} style="margin-bottom: 1rem">
+              <img src="/assets/backpacking-720w.jpg" alt="" />
             </figure>
             <Markdown markdown={eventContent} />
+            <h3>Select your Invitation</h3>
             <Select
               placeholder={'Type your name'}
               menuMaxHeight={35 * 5}
